@@ -11,7 +11,6 @@ fetch('flujo.json')
 function mostrarNodo(id) {
   const nodo = flujo[id];
   const chatbox = document.getElementById('chatbox');
-  const options = document.getElementById('options');
 
   const typing = document.createElement('div');
   typing.className = 'typing-indicator';
@@ -24,23 +23,37 @@ function mostrarNodo(id) {
 
     const msg = document.createElement('div');
     msg.className = 'message bot';
-    msg.innerHTML = '<img src="logo.png" class="avatar" alt="logo"> ' + nodo.mensaje;
+    msg.innerHTML = `<img src="logo.png" class="avatar" alt="logo"> <div>${nodo.mensaje}</div>`;
     chatbox.appendChild(msg);
     chatbox.scrollTop = chatbox.scrollHeight;
 
-    options.innerHTML = '';
+    
+    const buttonsContainer = document.createElement('div');
+    buttonsContainer.className = 'option-buttons';
+
     nodo.opciones.forEach(opcion => {
       const btn = document.createElement('button');
       btn.textContent = opcion.texto;
       btn.onclick = () => {
+        
         const userMsg = document.createElement('div');
         userMsg.className = 'message user';
         userMsg.textContent = opcion.texto;
         chatbox.appendChild(userMsg);
+        chatbox.scrollTop = chatbox.scrollHeight;
+
+        
+        buttonsContainer.remove();
+
+        
         nodoActual = opcion.siguiente;
         mostrarNodo(nodoActual);
       };
-      options.appendChild(btn);
+      buttonsContainer.appendChild(btn);
     });
+
+    chatbox.appendChild(buttonsContainer);
+    chatbox.scrollTop = chatbox.scrollHeight;
+
   }, 800);
 }

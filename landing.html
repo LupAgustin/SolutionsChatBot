@@ -3,107 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <title>Landing Page con Chatbot</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background: #ff8800;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    main {
-      padding: 40px;
-      text-align: center;
-    }
-
-    .chatbot-widget {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-      overflow-y: hidden;
-      overflow: hidden;
-      transition: height 0.3s ease, width 0.3s ease;
-    }
-
-    .chatbot-button {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #ff8800;
-      border: none;
-      color: white;
-      font-size: 30px;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .chatbot-popup {
-      display: none;
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      width: 360px;
-      height: 600px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-      z-index: 1001;
-    }
-
-    .chatbot-header {
-      background: #ff8800;
-      color: white;
-      padding: 10px;
-      text-align: center;
-      font-size: 18px;
-    }
-
-    .chatbot-header img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: white;
-      padding: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-  <h1>Bienvenido a Página de Ejemplo</h1>
+  <h1>Bienvenido a la Página de Ejemplo</h1>
 </header>
 
-<main>
-  <p>Esta es una página de ejemplo. Haz clic en el botón de Chatbot para hablar con nuestro asistente virtual.</p>
-</main>
-
 <div class="chatbot-widget">
-  <button class="chatbot-button" onclick="toggleChatbot()">🤖</button>
+  <button id="chatbotToggle" class="chatbot-button" onclick="toggleChatbot()">ChatBot</button>
   <div class="chatbot-popup" id="chatbotPopup">
     <div class="chatbot-header">
-      <span>Chat Bot Solutions Malls</span>
+      Chat Bot Solutions Malls
     </div>
-    <iframe src="index.html" style="width:100%; height:calc(100% - 60px); border:none;"></iframe>
+    <div class="chatbot">
+      <div class="chatbot-scroll">
+        <div class="header">
+          <img src="logo.png" class="logo-principal" alt="logo">
+          <h3 class="titulo">Chat Bot Solutions Malls</h3>
+        </div>
+    
+        <div id="chatbox" class="chatbox">
+        </div>
+      </div>
+    </div>
+    
   </div>
+  
+  
 </div>
 
 <script>
- function toggleChatbot() {
-  const popup = document.getElementById('chatbotPopup');
-  popup.style.height = '580px';
-  popup.style.width = '450px';
-  popup.style.display = (popup.style.display === 'block') ? 'none' : 'block';
-}
+  let chatAbierto = false;
 
+  function toggleChatbot() {
+    const popup = document.getElementById('chatbotPopup');
+    const boton = document.getElementById('chatbotToggle');
+
+    popup.classList.toggle('visible');
+    chatAbierto = !chatAbierto;
+
+    if (chatAbierto) {
+      boton.innerHTML = '<img src="chevron-abajo.png" alt="Cerrar">';
+    } else {
+      boton.textContent = 'ChatBot';
+    }
+  }
 </script>
+
+<script src="script.js"></script>
 
 </body>
 </html>
