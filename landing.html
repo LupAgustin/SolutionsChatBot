@@ -12,45 +12,34 @@
 </header>
 
 <div class="chatbot-widget">
-  <button id="chatbotToggle" class="chatbot-button" onclick="toggleChatbot()">ChatBot</button>
+  <button id="chatbotToggle" class="chatbot-button" onclick="toggleChatbot()">
+    <span class="btn-content">
+      <img src="chat-bot.png" alt="Icono" class="icono-chat">
+      ChatBot
+    </span>
+  </button>
   <div class="chatbot-popup" id="chatbotPopup">
     <div class="chatbot-header">
-      Chat Bot Solutions Malls
+      <span>Chat Bot Solutions Malls</span>
+      <button id="resetButton" class="reset-button">
+        <img src="reiniciar.png" alt="Reiniciar">
+      </button>
     </div>
+    
     <div class="chatbot">
       <div class="chatbot-scroll">
-        <div class="header">
+        <div class="headerChat">
           <img src="logo.png" class="logo-principal" alt="logo">
           <h3 class="titulo">Chat Bot Solutions Malls</h3>
         </div>
-    
+        
         <div id="chatbox" class="chatbox">
         </div>
       </div>
     </div>
     
   </div>
-  
-  
 </div>
-
-<script>
-  let chatAbierto = false;
-
-  function toggleChatbot() {
-    const popup = document.getElementById('chatbotPopup');
-    const boton = document.getElementById('chatbotToggle');
-
-    popup.classList.toggle('visible');
-    chatAbierto = !chatAbierto;
-
-    if (chatAbierto) {
-      boton.innerHTML = '<img src="chevron-abajo.png" alt="Cerrar">';
-    } else {
-      boton.textContent = 'ChatBot';
-    }
-  }
-</script>
 
 <script src="script.js"></script>
 

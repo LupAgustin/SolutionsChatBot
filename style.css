@@ -12,6 +12,12 @@ header {
   text-align: center;
 }
 
+.headerChat {
+  color: white;
+  text-align: center;
+  padding: 0px 0;
+}
+
 .chatbot-widget {
   position: fixed;
   bottom: 20px;
@@ -43,6 +49,7 @@ header {
 .chatbot-button img {
   width: 20px;
   height: 20px;
+  filter: brightness(0) invert(1);
 }
 
 .chatbot-popup {
@@ -58,15 +65,25 @@ header {
   z-index: 1001;
   opacity: 0;
   visibility: hidden;
-  transform: scale(0.8);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  pointer-events: none;
+  transform: translateY(100%);
+  display: flex;
+  flex-direction: column;
 }
 
-.chatbot-popup.visible {
-  opacity: 1;
+
+.chatbot-popup.animar-abrir {
+  animation: subirDesdeAbajo 0.4s forwards ease;
   visibility: visible;
-  transform: scale(1);
+  pointer-events: auto;
 }
+
+.chatbot-popup.animar-cerrar {
+  animation: bajarHaciaAbajo 0.4s forwards ease;
+  visibility: visible;
+  pointer-events: none;
+}
+
 
 .chatbot-header {
   background: #ff8800;
@@ -97,6 +114,20 @@ header {
   color: #222;
 }
 
+.btn-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icono-chat {
+  width: 20px;
+  height: 20px;
+  transition: opacity 0.3s ease;
+  vertical-align: middle;
+}
+
+
 .chatbot {
   width: 100%;
   height: 100%;
@@ -106,9 +137,12 @@ header {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  flex: 1;
+  overflow: hidden;
 }
 
 .chatbot-scroll {
+  position: relative; 
   flex: 1;
   overflow-y: auto;
   display: flex;
@@ -121,6 +155,19 @@ header {
   -ms-overflow-style: none;
 }
 
+.chatbot-scroll::before {
+  content: '';
+  position: absolute;
+  top: 90px;
+  left: 0;
+  width: 100%;
+  height: 22px;
+  background: linear-gradient(to bottom, white 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+
 .header {
   display: flex;
   flex-direction: column;
@@ -129,9 +176,9 @@ header {
 }
 
 .logo-principal {
-  width: 70px;
-  height: 70px;
-  margin-bottom: 10px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
 }
 
 .titulo {
@@ -139,12 +186,16 @@ header {
   font-weight: 600;
   color: #333;
   text-align: center;
+  margin: 5px 0;
 }
 
 .chatbox {
-  display: flex;
+   display: flex;
   flex-direction: column;
   gap: 8px;
+  overflow-y: auto;
+  max-height: 400px;
+  padding: 10px;
 }
 
 
@@ -165,15 +216,38 @@ header {
 }
 
 .message.bot {
-  background-color: #eef1f4;
-  align-self: flex-start;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.message.bot .avatar {
+  width: 36px; 
+  height: 36px;
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+
+.message.bot > div {
+  background-color: #eee;
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 70%;
+  word-wrap: break-word;
 }
 
 .message.user {
-  background-color: #ff880030;
+  background-color: #ff8800c3;
+  color: white;
   align-self: flex-end;
   text-align: right;
+  max-width: 60%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  display: inline-block;
+  vertical-align: top;
 }
+
 
 .message img.avatar {
   width: 28px;
@@ -183,15 +257,16 @@ header {
 
 .option-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 8px;
   margin-top: 4px;
   align-self: flex-start;
+  flex-wrap: wrap;
 }
 
 .option-buttons button {
-  background-color: #ffe0bb;
-  color: #333;
+  background-color: #f8eee1;
+  color: #fd9c00;
   border: none;
   border-radius: 14px;
   padding: 8px 14px;
@@ -209,6 +284,33 @@ header {
 .option-buttons button:hover {
   background-color: #ffcc99;
 }
+
+.chatbot-header {
+  background: #ff8800;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-family: 'Gill Sans', 'Gill Sans MT', sans-serif;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.reset-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.reset-button img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
 
 .typing-indicator {
   display: flex;
@@ -236,3 +338,26 @@ header {
   0% { opacity: 0.3; }
   100% { opacity: 1; }
 }
+
+@keyframes subirDesdeAbajo {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bajarHaciaAbajo {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
