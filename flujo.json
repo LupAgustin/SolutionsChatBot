@@ -1,0 +1,49 @@
+{
+  "inicio": {
+    "mensaje": "Hola, ¿en qué te puedo ayudar?",
+    "opciones": [
+      { "texto": "Ventas", "siguiente": "ventas" },
+      { "texto": "Contraseña", "siguiente": "clave" }
+    ]
+  },
+  "ventas": {
+    "mensaje": "¿Qué querés saber sobre las ventas?",
+    "opciones": [
+      { "texto": "¿Cada cuánto debo cargar mis ventas?", "siguiente": "frecuencia" },
+      { "texto": "¿Cuándo es mi último día para cargar ventas?", "siguiente": "ultimo_dia" },
+      { "texto": "¿Qué datos debo ingresar en el reporte de ventas?", "siguiente": "datos_ventas" }
+    ]
+  },
+  "frecuencia": {
+    "mensaje": "Debes cargar tus ventas de forma mensual, durante los primeros 10 días calendario del mes.",
+    "opciones": [{ "texto": "Volver al inicio", "siguiente": "inicio" }]
+  },
+  "ultimo_dia": {
+    "mensaje": "El último día para cargar tus ventas es el día 10 de cada mes. Es importante cumplir con esta fecha según lo estipulado en el contrato firmado.",
+    "opciones": [{ "texto": "Volver al inicio", "siguiente": "inicio" }]
+  },
+  "datos_ventas": {
+    "mensaje": "En el reporte debes ingresar:\n• Monto total mensual sin IVA.\n• Cantidad de operaciones.\n• Facturas anuladas (si las hubo).\n• Certificación contable firmada por tu contador.",
+    "opciones": [{ "texto": "Volver al inicio", "siguiente": "inicio" }]
+  },
+  "clave": {
+    "mensaje": "¿Qué necesitás saber sobre tu contraseña?",
+    "opciones": [
+      { "texto": "¿Cómo puedo cambiar mi contraseña?", "siguiente": "cambiar_contra" },
+      { "texto": "¿Con quién puedo contactarme para ayuda personalizada?", "siguiente": "contacto" },
+      { "texto": "¿Dónde encuentro el manual o video para cargar ventas?", "siguiente": "manual" }
+    ]
+  },
+  "cambiar_contra": {
+    "mensaje": "Para cambiar tu contraseña:\n1. Ingresá a la plataforma.\n2. Seleccioná “Cambiar contraseña”.\nSi tenés problemas, escribinos a glopez@spectrum.com.gt",
+    "opciones": [{ "texto": "Volver al inicio", "siguiente": "inicio" }]
+  },
+  "contacto": {
+    "mensaje": "Podés contactarnos:\n📧 glopez@spectrum.com.gt\n📞 WhatsApp o Tel: (+502 5019-1352)",
+    "opciones": [{ "texto": "Volver al inicio", "siguiente": "inicio" }]
+  },
+  "manual": {
+    "mensaje": "Podés consultar:\n📘 Manual de usuario: [agregar enlace]\n🎥 Video tutorial: [agregar enlace]",
+    "opciones": [{ "texto": "Volver al inicio", "siguiente": "inicio" }]
+  }
+}

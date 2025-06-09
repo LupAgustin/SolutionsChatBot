@@ -1,0 +1,149 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f0f0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   overflow-x: hidden;
+}
+
+
+.chatbot-header {
+  width: 100%;
+  background: #ff8800;
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}
+
+.chatbot {
+  width: 380px;
+  background: white;
+  border-radius: 20px 20px 0 0;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-principal {
+  width: 70px;
+  height: 70px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.titulo {
+  margin: 5px 0 20px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+}
+
+.chatbox {
+  width: 100%;
+  max-height: 300px;
+  overflow-y: hidden;
+  overflow-x: hidden; /* quita scroll lateral */
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  margin: 5px 0;
+}
+
+.message img.avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.bot {
+  background: #eef1f4;
+}
+
+.user {
+  background: #ff880030;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  margin: 5px 0;
+}
+
+
+.options button {
+  background: #ffe0bb;
+  color: #333;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 500;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  align-self: flex-end;
+}
+
+
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  margin: 5px 0;
+  padding: 10px;
+}
+
+.typing-indicator span {
+  width: 6px;
+  height: 6px;
+  background-color: #aaa;
+  border-radius: 50%;
+  animation: blink 1s infinite alternate;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.input-footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+}
