@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editor Visual de Chatbot</title>
+  <link rel="stylesheet" href="editor.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Editor</h2>
+    <button id="addTextNode">➕ Agregar Texto</button>
+    <button id="addOptionsNode">➕ Agregar Opciones</button>
+    <button id="export">💾 Exportar flujo</button>
+    <input type="file" id="importFile" accept=".json" style="margin-top:10px;" />
+    <button id="zoomIn">🔍 +</button>
+    <button id="zoomOut">🔍 −</button>
+  </div>
+
+  <div class="canvas" id="canvas">
+    <canvas id="connCanvas"></canvas>
+  </div>
+
+  <script src="editor.js"></script>
+</body>
+</html>
