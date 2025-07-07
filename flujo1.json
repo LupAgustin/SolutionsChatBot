@@ -1,0 +1,101 @@
+{
+  "state": {
+    "start": {
+      "id": "start-0",
+      "pos": {
+        "top": "151.75px",
+        "left": "30px"
+      },
+      "next": "txt-0"
+    },
+    "textNodes": {
+      "txt-0": {
+        "mensaje": "Hola, en que puedo ayudarte?",
+        "pos": {
+          "top": "154.003px",
+          "left": "221.574px"
+        },
+        "next": "opt-1"
+      },
+      "txt-2": {
+        "mensaje": "Compras Respuesta",
+        "pos": {
+          "top": "346.562px",
+          "left": "834.125px"
+        },
+        "next": "opt-4"
+      },
+      "txt-3": {
+        "mensaje": "Ventas Respuesta",
+        "pos": {
+          "top": "51.5px",
+          "left": "823.031px"
+        },
+        "next": "opt-4"
+      }
+    },
+    "optionNodes": {
+      "opt-1": {
+        "pos": {
+          "top": "192.047px",
+          "left": "532.313px"
+        },
+        "opciones": [
+          {
+            "texto": "Ventas",
+            "next": "txt-3"
+          },
+          {
+            "texto": "Compras",
+            "next": "txt-2"
+          }
+        ]
+      },
+      "opt-4": {
+        "pos": {
+          "top": "206.141px",
+          "left": "1186.3px"
+        },
+        "opciones": [
+          {
+            "texto": "Volver a inicio",
+            "next": null
+          }
+        ]
+      }
+    }
+  },
+  "flow": {
+    "inicio": {
+      "mensaje": "Hola, en que puedo ayudarte?",
+      "opciones": [
+        {
+          "texto": "Ventas",
+          "siguiente": "txt-3"
+        },
+        {
+          "texto": "Compras",
+          "siguiente": "txt-2"
+        }
+      ]
+    },
+    "txt-2": {
+      "mensaje": "Compras Respuesta",
+      "opciones": [
+        {
+          "texto": "Volver a inicio",
+          "siguiente": null
+        }
+      ]
+    },
+    "txt-3": {
+      "mensaje": "Ventas Respuesta",
+      "opciones": [
+        {
+          "texto": "Volver a inicio",
+          "siguiente": null
+        }
+      ]
+    }
+  }
+}

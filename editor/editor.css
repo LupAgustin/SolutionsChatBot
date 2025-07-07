@@ -1,0 +1,275 @@
+/* Variables para theming dinámico */
+:root {
+  --grid-color: rgba(0,0,0,0.05);
+  --canvas-bg: #f9fafb;
+  --text-bg: #f0f9ff;
+  --opts-bg: #fff7ed;
+  --start-bg: #34d399;
+  --accent-text: #60a5fa;
+  --accent-opts: #fbbf24;
+  --font-main: 'Segoe UI', sans-serif;
+  --node-radius: 8px;
+}
+
+/* Layout base */
+body {
+  margin: 0;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  font-family: var(--font-main);
+}
+
+.sidebar {
+  width: 240px;
+  background: #2c3142;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.sidebar button,
+.sidebar input {
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--accent-text);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.sidebar button:hover,
+.sidebar input:hover {
+  background: #3b82f6;
+}
+
+/* Canvas y grid */
+.canvas {
+  flex: 1;
+  position: relative;
+  overflow: auto;
+  background: var(--canvas-bg);
+  background-image:
+    radial-gradient(var(--grid-color) 1px, transparent 1px),
+    radial-gradient(var(--grid-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+#connCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Nodos compartidos */
+.text-node,
+.options-node,
+.start-node {
+  position: absolute;
+  border-radius: var(--node-radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: move;
+  font-family: var(--font-main);
+  z-index: 1;
+}
+
+.text-node:hover,
+.options-node:hover,
+.start-node:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Text-node */
+.text-node {
+  width: 260px;
+  background: var(--text-bg);
+  border-left: 4px solid var(--accent-text);
+  padding: 12px;
+}
+
+.text-node textarea {
+  width: 93%;
+  height: 70px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 0.9rem;
+  resize: none;
+}
+
+/* Options-node */
+.options-node {
+  width: 260px;
+  background: var(--opts-bg);
+  border-left: 4px solid var(--accent-opts);
+  padding: 12px;
+}
+
+/* Input connector para options-node (izquierda centro) */
+.options-node .input-connector {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #e5e7eb;
+  border-radius: 50%;
+  cursor: crosshair;
+  top: 50%;
+  left: -7px;
+  transform: translateY(-50%);
+  transition: background 0.2s;
+  z-index: 2;
+}
+.options-node .input-connector:hover {
+  background: var(--accent-opts);
+}
+
+/* Botón de cerrar como círculo arriba-centro */
+.options-node .delete-node {
+  position: absolute;
+  top: -12px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border: 2px solid var(--accent-opts);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ef4444;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 3;
+}
+.options-node .delete-node:hover {
+  background: var(--accent-opts);
+  color: #fff;
+}
+
+/* Botón de cerrar como círculo arriba-centro */
+.text-node .delete-node {
+  position: absolute;
+  top: -12px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border: 2px solid var(--accent-opts);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ef4444;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 3;
+}
+.text-node .delete-node:hover {
+  background: var(--accent-opts);
+  color: #fff;
+}
+
+.options-node .option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.options-node .option input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* Connectors inline para cada opción */
+.options-node .connector {
+  width: 14px;
+  height: 14px;
+  background: #e5e7eb;
+  border-radius: 50%;
+  cursor: crosshair;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.options-node .connector:hover {
+  background: var(--accent-opts);
+}
+
+.options-node .addOption {
+  margin-top: 10px;
+  background: var(--accent-opts);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.options-node .addOption:hover {
+  background: #f59e0b;
+}
+
+/* Start-node */
+.start-node {
+  width: 140px;
+  height: 48px;
+  background: var(--start-bg);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+/* Connectors para texto y Start */
+.input-connector,
+.output-connector,
+.start-node .output-connector {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #e5e7eb;
+  border-radius: 50%;
+  cursor: crosshair;
+  transition: background 0.2s;
+}
+
+.input-connector:hover,
+.output-connector:hover,
+.start-node .output-connector:hover {
+  background: var(--accent-text);
+}
+
+.text-node .input-connector { left: -7px; top: 50%; transform: translateY(-50%); }
+.text-node .output-connector { right: -7px; top: 50%; transform: translateY(-50%); }
+.start-node .output-connector { right: -7px; top: 50%; transform: translateY(-50%); }
+
+
+
+
+
