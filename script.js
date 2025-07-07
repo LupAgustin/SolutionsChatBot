@@ -1,12 +1,19 @@
-// script.js
-
 let flujo = {};
 let nodoActual = "inicio";
 
-// Inicializo el chat leyendo flujo.json
-async function initChat() {
+
+
+function link(text) {
+  return text.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener">$1</a>'
+  );
+}
+
+// Inicializo el chat
+async function inicioChat() {
   try {
-    const res  = await fetch('flujo1.json');
+    const res  = await fetch('flujo.json');
     const data = await res.json();
     flujo = data.flow ?? data;
 
@@ -19,7 +26,7 @@ async function initChat() {
     console.error('Error cargando flujo.json:', err);
   }
 }
-initChat();
+inicioChat();
 
 // Resetea el chat al inicio
 function resetChat() {
@@ -29,18 +36,12 @@ function resetChat() {
   mostrarNodo(nodoActual);
 }
 
-// Muestra un nodo dado su id, validando que exista
+//Muestro los mensajes
 function mostrarNodo(id) {
-  if (!flujo[id]) {
-    console.warn(`Nodo "${id}" no encontrado, regresando a "inicio".`);
-    id = "inicio";
-  }
   nodoActual = id;
-
-  const nodo = flujo[id];
+  const nodo   = flujo[id];
   const chatbox = document.getElementById('chatbox');
 
-  // Indicador de escritura
   const typing = document.createElement('div');
   typing.className = 'typing-indicator';
   typing.innerHTML = '<span></span><span></span><span></span>';
@@ -50,17 +51,18 @@ function mostrarNodo(id) {
   setTimeout(() => {
     typing.remove();
 
-    // Mensaje del bot
+    const contenido = link(nodo.mensaje)
+      .replace(/\n/g, '<br>');
+
     const msg = document.createElement('div');
     msg.className = 'message bot';
     msg.innerHTML = `
-      <img src="/imagenes/logo.png" class="avatar" alt="logo">
-      <div class="bubble">${nodo.mensaje}</div>
+      <img src="imagenes/logo.png" class="avatar" alt="logo">
+      <div class="bubble">${contenido}</div>
     `;
     chatbox.appendChild(msg);
     chatbox.scrollTop = chatbox.scrollHeight;
 
-    // Botones de opciones
     const buttonsContainer = document.createElement('div');
     buttonsContainer.className = 'option-buttons';
 
@@ -68,7 +70,6 @@ function mostrarNodo(id) {
       const btn = document.createElement('button');
       btn.textContent = opcion.texto;
       btn.onclick = () => {
-        // Mensaje del usuario
         const userMsg = document.createElement('div');
         userMsg.className = 'message user';
         userMsg.innerHTML = `<div class="bubble-user">${opcion.texto}</div>`;
@@ -77,7 +78,6 @@ function mostrarNodo(id) {
 
         buttonsContainer.remove();
 
-        // Determino siguiente nodo, y si no existe, vuelvo a "inicio"
         let nextId = opcion.siguiente;
         if (!flujo[nextId]) {
           console.warn(`Siguiente "${nextId}" inválido, regresando a "inicio".`);
@@ -93,7 +93,8 @@ function mostrarNodo(id) {
   }, 800);
 }
 
-// Toggle del chatbot (igual que antes)
+
+
 let chatAbierto = false;
 const boton      = document.getElementById('chatbotToggle');
 const popup      = document.getElementById('chatbotPopup');
@@ -106,11 +107,11 @@ function toggleChatbot() {
       popup.style.visibility = 'visible';
       popup.classList.remove('animar-cerrar');
       popup.classList.add('animar-abrir');
-      btnContent.innerHTML = '<img src="/imagenes/flechaAbajo.png" alt="Cerrar">';
+      btnContent.innerHTML = '<img src="imagenes/flechaAbajo.png" alt="Cerrar">';
     } else {
       popup.classList.remove('animar-abrir');
       popup.classList.add('animar-cerrar');
-      btnContent.innerHTML = '<img src="/imagenes/chat-bot.png" class="icono-chat" alt="Icono"> ChatBot';
+      btnContent.innerHTML = '<img src="imagenes/chat-bot.png" class="icono-chat" alt="Icono"> ChatBot';
       setTimeout(() => {
         popup.style.visibility = 'hidden';
         popup.classList.remove('animar-cerrar');
@@ -121,5 +122,5 @@ function toggleChatbot() {
   }, 200);
 }
 
-// Botón de reset para volver a inicio
+// Boton de reset para volver a inicio
 document.getElementById('resetButton').addEventListener('click', resetChat);

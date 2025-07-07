@@ -43,7 +43,7 @@
     "opciones": [{ "texto": "Volver al inicio", "siguiente": "inicio" }]
   },
   "manual": {
-    "mensaje": "Podés consultar:\n📘 Manual de usuario: [agregar enlace]\n🎥 Video tutorial: [agregar enlace]",
+   "mensaje": "📘 Manual de usuario: [ver manual](https://solutionsmalls.com/)\n🎥 Video tutorial: [ver video](https://youtu.be/rvJJWl3kOBw?si=YtU0iRqCwrSxBvk2)",
     "opciones": [{ "texto": "Volver al inicio", "siguiente": "inicio" }]
   }
 }
